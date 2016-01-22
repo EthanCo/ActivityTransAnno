@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="activitytransanno.activitytransanno">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/activitytransanno/build/libs/activitytransanno.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
