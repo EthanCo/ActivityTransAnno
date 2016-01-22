@@ -1,8 +1,39 @@
 # ActivityTransAnno #
 编译时注解，实现Activity 过渡 Transition，不使用运行时注解，主体上不使用反射，不影响性能。
 
-## 使用 ##
-### Injector ###
+## 对比 ##
+### 原本 ###
+	
+	public class SecondActivity extends AppCompatActivity {
+	    @Override
+	    protected void onCreate(@Nullable Bundle savedInstanceState) {
+	        super.onCreate(savedInstanceState);
+	
+	        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+	            getWindow().setExitTransition(new Explode());
+	            getWindow().setEnterTransition(new Explode());
+	        }
+	
+	        setContentView(R.layout.activity_second);
+	    }
+	}
+### 现在 ###
+	
+	@ActivityTransition(Transition.Explode)
+	public class SecondActivity extends AppCompatActivity {
+	    @Override
+	    protected void onCreate(@Nullable Bundle savedInstanceState) {
+	        super.onCreate(savedInstanceState);
+	
+	        TransInjector.inject(this);
+	        setContentView(R.layout.activity_second);
+	    }
+	}
+
+## 使用步骤 ##
+### 添加Jar包 ###
+在项目中添加activitytransanno.jar
+### 注入 ###
 在需要使用Activity Transition的Activity的onCreate中添加
 
 	TransInjector.inject(this);
